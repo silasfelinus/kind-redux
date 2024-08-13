@@ -1,0 +1,303 @@
+### Get All Users (with auth)
+# Retrieves a list of all users; requires authentication
+GET https://kindrobots.org/api/users/
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+###
+
+### Get All Users (error is the expected outcome)
+# Retrieves a list of all users; does not use authentication
+GET https://kindrobots.org/api/users/
+Accept: application/json
+Content-Type: application/json
+
+
+### Get User by ID
+# Retrieves a specific user by their ID; requires authentication
+GET https://kindrobots.org/api/users/18
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+###
+### Get Usernames
+# Retrieves usernames
+GET https://kindrobots.org/api/users/usernames
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+###
+### Add User (Various Scenarios)
+# Adds a new user with different sets of information; requires authentication
+POST https://kindrobots.org/api/users/register
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "testtesterton4",
+  "email": "test4@kindrobots.org",
+  "password": "testtest12"
+}
+
+# ... (repeat for other scenarios with different body payloads)
+
+###
+### Add User (Various Scenarios)
+# Adds a new user with different sets of information; requires authentication
+POST https://kindrobots.org/api/users/18
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "testtesterton",
+  "email": "test@kindrobots.org"
+}
+
+# 
+
+### Update a User by ID (Various Scenarios)
+# Updates a user's details by their ID; requires authentication
+PATCH https://kindrobots.org/api/users/18
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "superkateisuper",
+  "password": "testtest87"
+}
+
+
+### Delete a User by ID
+# Deletes a specific user by their ID; requires authentication
+DELETE https://kindrobots.org/api/users/18
+Accept: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+
+### Add User (With Email and Password)
+POST https://kindrobots.org/api/users/register
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "silasfelinusjg",
+  "email": "silas33yi@kindrobots.org",
+  "password": "superSecurePassword123"
+}
+
+###
+
+### Add User (With Username and Password)
+POST https://kindrobots.org/api/users
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "superkate",
+  "password": "Silasisamazing2"
+}
+
+###
+
+### Add User (With Username Only)
+POST https://kindrobots.org/api/users/register
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "_someones_"
+}
+
+###
+
+### Add User (With Email Only)
+POST https://kindrobots.org/api/users
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "email": "emailt4tHere@example.com"
+}
+
+###
+### Get All Users (no auth)
+GET https://kindrobots.org/api/users/
+Accept: application/json
+Content-Type: application/json
+
+
+###
+
+### Get User by ID
+GET https://kindrobots.org/api/users/18
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+###
+
+### Delete a User by ID
+DELETE https://kindrobots.org/api/users/17
+Accept: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+###
+
+### Update a User by ID (Username)
+PATCH https://kindrobots.org/api/users/1
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "silasfelinus",
+  "email": "silasfelinus@gmail.com",
+    "password": "Acrolin2218"
+}
+
+###
+
+### Validate a User
+POST https://kindrobots.org/api/auth/login
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "silasfelinus",
+    "password": "Acrolin2218"
+}
+
+###
+### Update a User with password
+PATCH https://kindrobots.org/api/users/18
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "password": "superSecurePassword123"
+}
+
+###
+
+### Update a User by ID (Email)
+PATCH https://kindrobots.org/api/users/1
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "email": "silasfelinus@gmail.com",
+  "password": "superSecurePassword123"
+}
+
+###
+
+
+### Validate login
+POST http://localhost:3000/api/user/auth
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "superkate",
+  "password": "superSecurePassword123"
+}
+
+
+
+### Login User (Username and Password)
+POST https://kindrobots.org/api/user/auth/login
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "silasfelinus",
+  "password": "superSecurePassword123"
+}
+
+###
+
+### Register User
+POST https://kindrobots.org/api/user/auth/register
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "newUser",
+  "email": "newUser@kindrobots.org",
+  "password": "NewUserPassword123"
+}
+
+###
+
+### Update Password
+PATCH https://kindrobots.org/api/user/auth/update-password
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "silasfelinus",
+  "oldPassword": "superSecurePassword123",
+  "newPassword": "NewSuperSecurePassword123"
+}
+
+###
+
+### Update User Details
+PATCH https://kindrobots.org/api/user/auth/update-user
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "silasfelinus",
+  "newUsername": "silasUpdated",
+  "email": "updatedEmail@kindrobots.org"
+}
+
+###
+
+### Delete User
+DELETE https://kindrobots.org/api/user/auth/delete
+Accept: application/json
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "silasfelinus"
+}
+
+###
+
+### Validate login
+POST https://kindrobots.org/api/auth/login
+Content-Type: application/json
+x-api-key: thstrjhtydjtydngbsrthtyjmytjngbnrthwtuh6jm
+
+{
+  "username": "silasfelinus",
+  "password": "superSecurePassword123"
+}
+
+###
+[{"id":0,"createdAt":"2023-09-23 04:12:22.000","updatedAt":"2023-09-24 18:07:09.000","Role":"GUEST","username":"Kind Guest","email":"kindguest@kindrobots.com","questPoints":0,"emailVerified":null,"name":null,"address1":null,"address2":null,"avatarImage":"/images/botcafe.webp","bio":"I was born and then things happened and now I'm here.","birthday":null,"city":null,"country":null,"discordUrl":null,"facebookUrl":null,"instagramUrl":null,"kindrobotsUrl":null,"languages":null,"phone":null,"state":null,"timezone":null,"twitterUrl":null,"apiKey":"9b0650dfa4c4fd4e8bfbf1d171e32128","password":"$2b$10$TyH7kbSY8ErCNZ0MCuCq8uyJQ4QywHWtbAG6futFr4XejFodqHbY6","spotifyAccessToken":null,"spotifyID":null,"spotifyRefreshToken":null,"karma":0,"mana":1000,"clickRecord":0,"matchRecord":0}
+{"id":1,"createdAt":"2023-08-28 06:55:16.000","updatedAt":"2023-09-29 15:29:35.000","Role":"ADMIN","username":"silasfelinus","email":"silasfelinus@gmail.com","questPoints":0,"emailVerified":null,"name":null,"address1":null,"address2":null,"avatarImage":"/images/botcafe.webp","bio":"I was born and then things happened and now I'm here.","birthday":null,"city":null,"country":null,"discordUrl":null,"facebookUrl":null,"instagramUrl":null,"kindrobotsUrl":null,"languages":null,"phone":null,"state":null,"timezone":null,"twitterUrl":null,"apiKey":null,"password":"$2b$10$CfjexYomy5sLeUl.jR6cXOGmgfRClWpACei4nPC5d4qIPkjSlgo.e","spotifyAccessToken":null,"spotifyID":null,"spotifyRefreshToken":null,"karma":0,"mana":1000,"clickRecord":1000,"matchRecord":30}
+{"id":27,"createdAt":"2023-09-18 20:58:51.000","updatedAt":"2023-09-29 20:14:47.000","Role":"DESIGNER","username":"FredNylon","email":"hairbysuperkate@gmail.com","questPoints":0,"emailVerified":null,"name":null,"address1":null,"address2":null,"avatarImage":"/images/botcafe.webp","bio":"I was born and then things happened and now I'm here.","birthday":null,"city":null,"country":null,"discordUrl":null,"facebookUrl":null,"instagramUrl":null,"kindrobotsUrl":null,"languages":null,"phone":null,"state":null,"timezone":null,"twitterUrl":null,"apiKey":"de04c243fa9858a6154d38eaa8a0b48c","password":"$2b$10$feAcSf3Bpta/Yal5YgvfTe2ORli.Lr.Evk8TmgslRUaXs7iNz4e9C","spotifyAccessToken":null,"spotifyID":null,"spotifyRefreshToken":null,"karma":0,"mana":1000,"clickRecord":0,"matchRecord":0}
+{"id":28,"createdAt":"2023-09-18 23:03:51.000","updatedAt":"2023-09-29 20:14:47.000","Role":"DESIGNER","username":"Foxy","email":"foxinfoxsocksfoxfoxsock@gmail.com","questPoints":0,"emailVerified":null,"name":null,"address1":null,"address2":null,"avatarImage":"/images/botcafe.webp","bio":"I was born and then things happened and now I'm here.","birthday":null,"city":null,"country":null,"discordUrl":null,"facebookUrl":null,"instagramUrl":null,"kindrobotsUrl":null,"languages":null,"phone":null,"state":null,"timezone":null,"twitterUrl":null,"apiKey":"8b1cd249e9c7605c87909c529a009e48","password":"","spotifyAccessToken":null,"spotifyID":null,"spotifyRefreshToken":null,"karma":0,"mana":1000,"clickRecord":3000,"matchRecord":65}
+{"id":29,"createdAt":"2023-09-20 02:57:49.000","updatedAt":"2023-09-20 02:57:49.000","Role":"USER","username":"Testmonkey","email":"","questPoints":0,"emailVerified":null,"name":null,"address1":null,"address2":null,"avatarImage":"/images/botcafe.webp","bio":"I was born and then things happened and now I'm here.","birthday":null,"city":null,"country":null,"discordUrl":null,"facebookUrl":null,"instagramUrl":null,"kindrobotsUrl":null,"languages":null,"phone":null,"state":null,"timezone":null,"twitterUrl":null,"apiKey":"9fd89c0395137d5a2584b8c25e157d5a","password":"","spotifyAccessToken":null,"spotifyID":null,"spotifyRefreshToken":null,"karma":0,"mana":1000,"clickRecord":0,"matchRecord":0}
+{"id":30,"createdAt":"2023-09-23 03:47:20.000","updatedAt":"2023-09-29 20:14:47.000","Role":"DESIGNER","username":"_someones_","email":"roninknight@gmail.com","questPoints":0,"emailVerified":null,"name":null,"address1":null,"address2":null,"avatarImage":"/images/botcafe.webp","bio":"I was born and then things happened and now I'm here.","birthday":null,"city":null,"country":null,"discordUrl":null,"facebookUrl":null,"instagramUrl":null,"kindrobotsUrl":null,"languages":null,"phone":null,"state":null,"timezone":null,"twitterUrl":null,"apiKey":"9fda6500fa214ec194926a86c8698bfc","password":"$2b$10$g7CnbM5wXp6m7duF8LNzUOwidgyXyqDohYXDpQCKg5nTRZnZsTtAq","spotifyAccessToken":null,"spotifyID":null,"spotifyRefreshToken":null,"karma":0,"mana":1000,"clickRecord":10000,"matchRecord":0}]

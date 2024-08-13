@@ -1,0 +1,30 @@
+### Fetch High Click Scores
+GET https://kindrobots.org/api/milestones/fetchHighClickScores
+
+###
+
+### Fetch High Match Scores
+GET https://kindrobots.org/api/milestones/fetchHighMatchScores
+
+###
+
+### Update Click Record for User with ID 1 and New Score 100
+PUT https://kindrobots.org/api/milestones/updateClickRecord
+Content-Type: application/json
+
+{
+  "newScore": 3000,
+  "userId": 28
+}
+
+###
+
+### Update Match Record for User with ID 1 and New Score 20
+PUT https://kindrobots.org/api/milestones/updateMatchRecord
+Content-Type: application/json
+
+{
+  "newScore": 65,
+  "userId": 28
+}
+

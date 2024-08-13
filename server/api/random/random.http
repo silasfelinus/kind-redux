@@ -1,0 +1,48 @@
+### Create a new RandomList
+POST https://kindrobots.org/api/random/
+Content-Type: application/json
+
+{
+  "title": "Dreams",
+  "items": ["Dream1", "Dream2", "Dream3"],
+  "userId": 1
+}
+
+###
+
+### Get a RandomList by ID
+GET https://kindrobots.org/api/random/1
+
+###
+
+### Update a RandomList by ID
+PATCH https://kindrobots.org/api/random/1
+Content-Type: application/json
+
+{
+  "title": "Updated Dreams",
+  "items": ["Updated Dream1", "Updated Dream2"],
+  "userId": 1
+}
+
+###
+
+### Delete a RandomList by ID
+DELETE https://kindrobots.org/api/random/1
+
+###
+
+### Get all RandomLists
+GET https://kindrobots.org/api/random/
+
+###
+
+### Get a RandomList by title
+GET https://kindrobots.org/api/random/title/Dreams
+
+###
+
+### Get RandomLists by userId
+GET https://kindrobots.org/api/random/user/1
+
+###

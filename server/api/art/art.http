@@ -1,0 +1,581 @@
+###
+---
+model Art {
+  id          Int           @id @unique @default(autoincrement())
+  createdAt   DateTime?     @default(now())
+  updatedAt   DateTime?
+  galleryId   Int?
+  path        String
+  prompt      String?       @db.Text
+  artPromptId Int?
+  userId      Int?          @default(0)
+  Pitch       Pitch?        @relation(fields: [pitchId], references: [id])
+  pitchId     Int?
+  pitch       String?
+  boos        Int?          @default(0)
+  claps       Int?          @default(0)
+  ArtPrompt   ArtPrompt?    @relation(fields: [artPromptId], references: [id])
+  Gallery     Gallery?      @relation(fields: [galleryId], references: [id])
+  Tags        Tag[]
+  User        User?         @relation(fields: [userId], references: [id])
+  ArtReaction ArtReaction[]
+  steps       Int?
+  seed        Int?
+  sampler     String?
+  cfg         String?
+  checkpoint  String?
+  isMature      Boolean?      @default(false)
+  isPublic    Boolean?      @default(false)
+  isOrphan    Boolean?      @default(false)
+  channelId   Int?
+  Channel     Channel?      @relation(fields: [channelId], references: [id])
+  Products    Product[]
+}
+
+model ArtPrompt {
+  id        Int       @id @unique @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
+  userId    Int       @default(0)
+  prompt    String    @db.Text
+  galleryId Int?      @default(21)
+  pitch     String?
+  Art       Art[]
+  User      User      @relation(fields: [userId], references: [id])
+  pitchId   Int?
+  Pitch     Pitch?    @relation(fields: [pitchId], references: [id])
+}
+
+model ArtReaction {
+  id        Int       @id @unique @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime?
+  userId    Int
+  artId     Int?
+  claps     Int       @default(0)
+  boos      Int       @default(0)
+  title     String?
+  comment   String?   @db.Text
+  reaction  String?
+  Art       Art?      @relation(fields: [artId], references: [id])
+  User      User      @relation(fields: [userId], references: [id])
+  tags      Tag[]
+  Pitch     Pitch?    @relation(fields: [pitchId], references: [id])
+  pitchId   Int?
+}
+model Pitch {
+  id             Int           @id @unique @default(autoincrement())
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime?     @updatedAt
+  title          String
+  pitch          String
+  flavorText     String?
+  designer       String
+  creatorId      Int?
+  userId         Int           @default(0)
+     isMAture     Boolean       @default(false)
+  isPublic       Boolean       @default(true)
+  isOrphan       Boolean       @default(false)
+  claps          Int           @default(0)
+  boos           Int           @default(0)
+  Channel        Channel?      @relation(fields: [channelId], references: [id])
+  channelId      Int?          @unique
+  User           User          @relation(fields: [userId], references: [id])
+  ArtReaction    ArtReaction[]
+  Art            Art[]
+  ArtPrompts     ArtPrompt[]
+  highlightImage String        @default("/images/kindtitle.webp")
+}
+
+model Channel {
+  id          Int       @id @unique @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime?
+  userId      Int?      @default(0)
+  label       String    @default("global")
+  title       String?
+  description String?   @db.Text
+  tagId       Int?
+  Tag         Tag?
+  User        User?     @relation(fields: [userId], references: [id])
+  Message     Message[]
+  Pitch       Pitch?
+  Art         Art[]
+  pitchId     Int?
+
+}
+
+model Gallery {
+  id             Int       @id @unique @default(autoincrement())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime?
+  name           String    @unique
+  description    String?   @db.Text
+  mediaId        String?
+  url            String?
+  custodian      String?
+  userId         Int?
+  content        String    @default("")
+  highlightImage String?
+  imagePaths     String?   @db.Text
+  isMature         Boolean   @default(false)
+  Art            Art[]
+  User           User?     @relation(fields: [userId], references: [id])
+
+  @@index([userId], map: "Gallery_userId_fkey")
+}
+
+---
+###
+
+### Get All Art
+GET https://kindrobots.org/api/art
+Content-Type: application/json
+
+### Get All ArtPrompts
+GET https://kindrobots.org/api/prompts/
+Content-Type: application/json
+###
+
+### Create New ArtPrompt
+POST https://kindrobots.org/api/prompts
+Content-Type: application/json
+
+{
+    "galleryId": 21,
+    "userId": 1,
+    "prompt": "devil bunny"
+}
+
+###
+### Get all ArtPrompts
+GET https://kindrobots.org/api/prompts
+Content-Type: application/json
+
+
+###
+### Get all Channels
+GET https://kindrobots.org/api/channels
+Content-Type: application/json
+
+
+###
+### Get all Pitches
+GET https://kindrobots.org/api/pitches
+Content-Type: application/json
+
+
+###
+### Generate Art from prompt to Cafe Fred
+POST https://kindrobots.org/api/art/generate
+Content-Type: application/json
+
+{
+  "prompt": "goth kitten",
+  "pitchName": "gothcore",
+  "userName": "silasfelinus",
+  "galleryName": "cafefred"
+}
+###
+
+### Generate Art from extensive prompt to Cafe Fred
+POST https://kindrobots.org/api/art/generate
+Content-Type: application/json
+
+{ 
+  "title": "Devil Bunny",
+  "prompt": "gothcore, devil bunny, hellish eyes, inferno" ,
+  "description": "Just a cute little bun-bun",
+  "flavorText": "Little Bunny Fu Fu, I don't wanna see you...",
+  "userId": 1 ,
+  "galleryId": 21,
+  "designerName": "Tim Gorey",
+  "channelName": "gothcore",
+  "userName": "silasfelinus",
+  "pitchName": "gothcore" ,
+  "galleryName": "cafefred",
+  "isMature": false ,
+  "isPublic": true,
+  "isOrphan": true
+}
+###
+
+### Create a New Art Piece
+POST https://kindrobots.org/api/art
+Content-Type: application/json
+
+{
+    "galleryId": 19,
+    "path": "/images/starry-night.jpg"
+}
+
+###
+
+### Edit an Existing Art Piece (Assuming ID is 1)
+PATCH https://kindrobots.org/api/art/1
+Content-Type: application/json
+
+{
+    "path": "/images/sunflowers.jpg"
+}
+
+###
+
+### Delete an Art Piece (Assuming ID is 1)
+DELETE https://kindrobots.org/api/art/1
+Content-Type: application/json
+
+###
+
+### Get All Art Reactions
+GET https://kindrobots.org/api/reactions
+Content-Type: application/json
+
+###
+
+### Create a New Art Reaction
+POST https://kindrobots.org/api/reactions
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "artId": 5,
+    "claps": 0,
+    "boos": 5,
+    "title": "hmmm!",
+    "reaction": "skeptical",
+    "comment": "not sure here"
+}
+
+###
+
+### Edit an Existing Art Reaction (Assuming ID is 1)
+PATCH https://kindrobots.org/api/reactions/4
+Content-Type: application/json
+
+{
+    "claps": 10,
+    "comment": "Still loving this art!"
+}
+
+###
+
+### Delete an Art Reaction (Assuming ID is 1)
+DELETE https://kindrobots.org/api/reactions/2
+Content-Type: application/json
+
+###
+
+
+
+### Post to an art modeller
+POST  https://cafefred.purrsalon.com/sdapi/v1/txt2img
+Content-Type: application/json
+Accept: application/json
+
+{
+  "prompt": "Eau de Wet Dog"
+}
+
+###
+
+### embeddings check
+GET  https://cafefred.purrsalon.com/sdapi/v1/embeddings
+Content-Type: application/json
+Accept: application/json
+
+###
+
+### models check
+GET  https://cafefred.purrsalon.com/sdapi/v1/sd-models
+Content-Type: application/json
+Accept: application/json
+
+###
+
+### loras check
+GET  https://cafefred.purrsalon.com/sdapi/v1/loras
+Content-Type: application/json
+Accept: application/json
+
+###
+
+### lola check
+GET  https://lola.purrsalon.com/sdapi/v1/sd-models
+Content-Type: application/json
+Accept: application/json
+
+###
+### Create new Art
+POST https://kindrobots.org/api/art
+Content-Type: application/json
+Accept: application/json
+
+  {
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695613612690.webp",
+    "prompt": "zebra accountant",
+    "artPromptId": 23,
+    "userId": 0,
+    "pitch": "zebrapunk",
+    "pitchId": 2
+  }
+
+### Create new Art
+
+POST https://kindrobots.org/api/art
+Content-Type: application/json
+Accept: application/json
+
+  [
+  {
+    "id": 5,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695613129681.webp",
+    "prompt": "zebra accountant",
+    "artPromptId": 23,
+    "userId": 0,
+    "pitch": "zebrapunk",
+    "pitchId": 2
+  },
+  {
+    "id": 6,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695613612690.webp",
+    "prompt": "zebra accountant",
+    "artPromptId": 23,
+    "userId": 0,
+    "pitch": "zebrapunk",
+    "pitchId": 2
+  },
+  {
+    "id": 7,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695614151892.webp",
+    "prompt": "zebra accountant",
+    "artPromptId": 23,
+    "userId": 0,
+    "pitch": "zebrapunk",
+    "pitchId": 2
+  },
+  {
+    "id": 8,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695614314067.webp",
+    "prompt": "zebra accountant",
+    "artPromptId": 23,
+    "userId": 0,
+    "pitch": "zebrapunk",
+    "pitchId": 2
+  },
+  {
+    "id": 9,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695750959983.webp",
+    "prompt": "anti-malaria robot intelligence modelled after butterflies",
+    "artPromptId": 24,
+    "userId": 0,
+    "pitch": "AMI",
+    "pitchId": 5
+  },
+  {
+    "id": 10,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695843287391.webp",
+    "prompt": "anti-malaria robot intelligence modelled after butterflies",
+    "artPromptId": 24,
+    "userId": 0,
+    "pitch": "AMI",
+    "pitchId": 5
+  },
+  {
+    "id": 11,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695859286249.webp",
+    "prompt": "masterpiece photo of punk zebra with rainbow mohawk attorney at law",
+    "artPromptId": 20,
+    "userId": 0,
+    "pitch": "zebrapunk",
+    "pitchId": 2
+  },
+  {
+    "id": 12,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695874480384.webp",
+    "prompt": "masterpiece photo of punk zebra with rainbow mohawk attorney at law",
+    "artPromptId": 20,
+    "userId": 0,
+    "pitch": "zebrapunk",
+    "pitchId": 2
+  },
+  {
+    "id": 13,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695875215682.webp",
+    "prompt": "masterpiece photo of punk zebra with rainbow mohawk attorney at law",
+    "artPromptId": 20,
+    "userId": 0,
+    "pitch": "zebrapunk",
+    "pitchId": 2
+  },
+  {
+    "id": 14,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695921236872.webp",
+    "prompt": "masterpiece photo of punk zebra with rainbow mohawk attorney at law",
+    "artPromptId": 20,
+    "userId": 0,
+    "pitch": "zebrapunk",
+    "pitchId": 2
+  },
+  {
+    "id": 15,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695922686929.webp",
+    "prompt": "masterpiece photo of punk zebra with rainbow mohawk attorney at law",
+    "artPromptId": 20,
+    "userId": 0,
+    "pitch": "zebrapunk",
+    "pitchId": 2
+  },
+  {
+    "id": 16,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695924306101.webp",
+    "prompt": "masterpiece photo of punk sloth with rainbow mohawk attorney at law",
+    "artPromptId": 21,
+    "userId": 0,
+    "pitch": "slothcore",
+    "pitchId": 1
+  },
+  {
+    "id": 17,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695925528096.webp",
+    "prompt": "masterpiece photo of punk sloth with rainbow mohawk attorney at law",
+    "artPromptId": 21,
+    "userId": 0,
+    "pitch": "slothcore",
+    "pitchId": 1
+  },
+  {
+    "id": 18,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695926066083.webp",
+    "prompt": "masterpiece photo of punk sloth with rainbow mohawk attorney at law",
+    "artPromptId": 21,
+    "userId": 0,
+    "pitch": "slothcore",
+    "pitchId": 1
+  },
+  {
+    "id": 19,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695930888823.webp",
+    "prompt": "masterpiece photo of punk sloth with rainbow mohawk attorney at law",
+    "artPromptId": 21,
+    "userId": 0,
+    "pitch": "slothcore",
+    "pitchId": 1
+  },
+  {
+    "id": 20,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695952621328.webp",
+    "prompt": "masterpiece photo of punk sloth with rainbow mohawk attorney at law",
+    "artPromptId": 21,
+    "userId": 0,
+    "pitch": "slothcore",
+    "pitchId": 1
+  },
+  {
+    "id": 21,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1695953049861.webp",
+    "prompt": "masterpiece photo of punk sloth with rainbow mohawk attorney at law",
+    "artPromptId": 20,
+    "userId": 0,
+    "pitch": "slothcore",
+    "pitchId": 1
+  },
+  {
+    "id": 22,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1696015056746.webp",
+    "prompt": "Fred Nylon owner of Cafe Fred",
+    "artPromptId": 22,
+    "userId": 0,
+    "pitch": "Fred Nylon",
+    "pitchId": 3
+  },
+  {
+    "id": 23,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1696097402982.webp",
+    "prompt": "Fred Nylon owner of Cafe Fred",
+    "artPromptId": 25,
+    "userId": 0,
+    "pitch": "Fred Nylon owner of Cafe Fred",
+    "pitchId": 3
+  },
+  {
+    "id": 24,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1696097906905.webp",
+    "prompt": "Fred Nylon owner of Cafe Fred, elderly man with pink hair, close-up, wrinkled, __emotion__",
+    "artPromptId": 26,
+    "userId": 0,
+    "pitch": "Fred Nylon",
+    "pitchId": 3
+  },
+  {
+    "id": 25,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1696098013049.webp",
+    "prompt": "Fred Nylon owner of Cafe Fred, elderly man with pink hair, close-up, wrinkled, __emotion__",
+    "artPromptId": 27,
+    "userId": 0,
+    "pitch": "Fred Nylon",
+    "pitchId": 3
+  },
+  {
+    "id": 26,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1696110429597.webp",
+    "prompt": "__emotion__, Fred Nylon owner of Cafe Fred, elderly man with pink hair, close-up, wrinkled",
+    "artPromptId": 28,
+    "userId": 1,
+    "pitch": "Fred Nylon",
+    "pitchId": 3
+  },
+  {
+    "id": 27,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1696119817888.webp",
+    "prompt": "Visiting a market where people trade in dreams and memories",
+    "artPromptId": 29,
+    "userId": 1,
+    "pitch": "dreamscape",
+    "pitchId": 6
+  },
+  {
+    "id": 28,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1696119866346.webp",
+    "prompt": "Planting a seed that grows into a tree with your favorite childhood memories as fruits",
+    "artPromptId": 30,
+    "userId": 1,
+    "pitch": "dreamscape",
+    "pitchId": 6
+  },
+  {
+    "id": 29,
+    "galleryId": 21,
+    "path": "/images/cafefred/cafefred-1696120186572.webp",
+    "prompt": "Fred Nylon owner of Cafe Fred, elderly man with pink hair, close-up, wrinkled, leather jacket, nose piercing, masterpiece",
+    "artPromptId": 31,
+    "userId": 1,
+    "pitch": "Fred Nylon",
+    "pitchId": 3
+  }
+]

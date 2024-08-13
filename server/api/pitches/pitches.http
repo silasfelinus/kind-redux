@@ -1,0 +1,103 @@
+### Create New Pitches
+POST http://localhost:3000/api/pitches
+Content-Type: application/json
+
+[
+  {
+    "title": "Slothcore",
+    "pitch": "sloth with a top hat and monocle",
+    "flavorText": "The classiest sloth you'll ever meet!",|
+    "designer": "Dazzling Dolphin the Brilliant",
+    "userId": 0,
+    "isMature": false,
+    "isPublic": true,
+    "isOrphan": true
+  },
+  {
+    "title": "Zebrapunk",
+    "pitch": "zebra with nose piercings, punk style",
+    "flavorText": "This zebra is too cool for school!",
+    "designer": "Jolly Jellyfish the Wise",
+    "userId": 0,
+    "isMature": false,
+    "isPublic": true,
+    "isOrphan": false
+  },
+  {
+    "title": "Fred Nylon",
+    "pitch": "a mysterious figure wrapped in nylon",
+    "flavorText": "Who is Fred? Why nylon? So many questions!",
+    "designer": "Radiant Raccoon the Marvelous",
+    "userId": 0,
+    "isMature": false,
+    "isPublic": true,
+    "isOrphan": true
+  },
+  {
+    "title": "Gothcore",
+    "pitch": "a goth raven with dark eyeliner and a choker",
+    "flavorText": "Emo phase? No, this is who I am.",
+    "designer": "Ingenious Iguana the Fearless",
+    "userId": 0,
+    "isMature": true,
+    "isPublic": true,
+    "isOrphan": false
+  }
+]
+
+### Create New Pitches
+POST http://localhost:3000/api/pitches
+Content-Type: application/json
+
+[
+  {
+    "title": "AMI",
+    "pitch": "AMI - The Anti-Malaria Intelligence, rainbow butterflies",
+    "flavorText": "We're AMI",
+    "designer": "Dazzling Dolphin the Brilliant",
+    "userId": 0,
+    "isMature": false,
+    "isPublic": true,
+    "isOrphan": true
+  }
+
+]
+
+### Create New Pitches
+POST http://localhost:3000/api/pitches
+Content-Type: application/json
+
+[
+  {
+    "title": "Cafe Purrpourri",
+    "pitch": "Forest glen filled with magical creatures",
+    "flavorText": "what's in your magical forest?",
+    "designer": "Sylvan Paradise",
+    "userId": 0,
+    "isMature": false,
+    "isPublic": true,
+    "isOrphan": true
+  }
+
+]
+### Get All Pitches
+GET http://localhost:3000/api/pitches/batch
+
+
+### Get Pitch By ID
+GET http://localhost:3000/api/pitches/1
+
+###
+
+### Update a Pitch (Replace {id} with actual ID)
+PUT http://localhost:3000/api/pitches/3
+Content-Type: application/json
+
+{
+    "title": "Fred Nylon",
+    "pitch": "Fred Nylon, owner of cafe fred, pink hair, elderly, wrinkles"
+}
+
+### Delete a Pitch (Replace {id} with actual ID)
+DELETE http://localhost:3000/api/pitches/11
+Content-Type: application/json

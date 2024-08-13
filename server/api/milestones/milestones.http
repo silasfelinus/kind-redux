@@ -1,0 +1,206 @@
+
+
+### Get All Milestones index.get.ts
+GET http://kindrobots.org/api/milestones
+Content-Type: application/json
+
+###
+### Get Milestone by id
+GET http://kindrobots.org/api/milestones/1
+Content-Type: application/json
+
+###
+
+### Get All Records records.get.ts
+GET http://kindrobots.org/api/milestones/records
+Content-Type: application/json
+
+###
+### Get Records for userid
+GET http://kindrobots.org/api/users/milestones/1
+Content-Type: application/json
+
+###
+
+
+### Add a Milestone record
+POST https://kindrobots.org/api/milestones/records
+Content-Type: application/json
+
+{
+    "userId": "1",
+    "milestoneId": "1"
+}
+
+###
+### Add or Update a Milestone
+POST http://localhost:3000/api/milestones/
+Content-Type: application/json
+
+[{
+    "label": "Artist!",
+    "message": "You made Art!",
+    "triggerCode": "Artist",
+    "icon": "mdi:palette",
+    "karma": 10,
+    "isRepeatable": true,
+    "tooltip": "Make new Art for our Art Modeler",
+    "isActive": true,
+    "pageHint": "/artmaker",
+    "subtleHint": "Go press some buttons in the art room"
+}]
+
+###
+
+### Add or Update a Milestone
+PATCH http://localhost:3000/api/milestones/11
+Content-Type: application/json
+
+{
+    "label": "Artist!",
+    "message": "You made Art!",
+    "triggerCode": "Artist",
+    "icon": "mdi:palette",
+    "karma": 10,
+    "isRepeatable": true
+}
+
+###
+
+
+### Seed Milestones
+POST https://kindrobots.org/api/milestones/
+Content-Type: application/json
+
+[
+  {
+    "id": 1,
+    "label": "Trailblazer!",
+    "message": "You ventured into a new realm!",
+    "triggerCode": "Dashboard",
+    "icon": "mdi:compass",
+    "karma": 1000,
+    "isRepeatable": false,
+    "tooltip": "Create a user account",
+    "isActive": true,
+    "pageHint": "/",
+    "subtleHint": "Venture into a new realm"
+  },
+  {
+    "id": 2,
+    "label": "Brainstorm!",
+    "message": "Your creativity is electrifying!",
+    "triggerCode": "Brainstorm",
+    "icon": "mdi:lightning-bolt",
+    "karma": 1000,
+    "isRepeatable": false,
+    "tooltip": "Submit a brainstorm.",
+    "isActive": false,
+    "pageHint": "/brainstorm",
+    "subtleHint": "Flex your cranium"
+  },
+  {
+    "id": 3,
+    "label": "Weirdlandia!",
+    "message": "You embarked on a whimsical journey!",
+    "triggerCode": "weirdlandia",
+    "icon": "mdi:alien",
+    "karma": 1000,
+    "isRepeatable": false,
+    "tooltip": "Start your path in weirdlandia",
+    "isActive": false,
+    "pageHint": "/weirdlandia",
+    "subtleHint": "Venture into a new realm"
+  },
+  {
+    "id": 4,
+    "label": "Botcafe!",
+    "message": "You had a heart-to-heart with a Kind Robot!",
+    "triggerCode": "botcafe",
+    "icon": "mdi:robot",
+    "karma": 1000,
+    "isRepeatable": false,
+    "tooltip": "Send a chat message to a robot.",
+    "isActive": false,
+    "pageHint": "/botcafe",
+    "subtleHint": "Palaver with a pseudo-intelligence"
+  },
+  {
+    "id": 5,
+    "label": "ArtMaker!",
+    "message": "You crafted a masterpiece!",
+    "triggerCode": "artmaker",
+    "icon": "mdi:palette",
+    "karma": 1000,
+    "isRepeatable": false,
+    "tooltip": "Submit a prompt to Art Maker",
+    "isActive": false,
+    "pageHint": "/artmaker",
+    "subtleHint": "What does it take to become an artist?"
+  },
+  {
+    "id": 6,
+    "label": "A Questionable Conundrum",
+    "message": "You chose your destiny!",
+    "triggerCode": "fate",
+    "icon": "mdi:crystal-ball",
+    "karma": 1000,
+    "isRepeatable": false,
+    "tooltip": "Make a decision in Fate Chooser.",
+    "isActive": false,
+    "pageHint": "/fate",
+    "subtleHint": "There are no wrong answers"
+  },
+  {
+    "id": 7,
+    "label": "Art Critic!",
+    "message": "You made a tasteful judgment!",
+    "triggerCode": "artcritic",
+    "icon": "mdi:eye-check",
+    "karma": 1000,
+    "isRepeatable": false,
+    "tooltip": "Respond to something with a comment or reaction.",
+    "isActive": false,
+    "pageHint": "/galleries",
+    "subtleHint": "Express an opinion"
+  },
+  {
+    "id": 8,
+    "label": "Malaria Activist!",
+    "message": "You lent your voice to AMI!",
+    "triggerCode": "amibot",
+    "icon": "mdi:microphone",
+    "karma": 1000,
+    "isRepeatable": false,
+    "tooltip": "Create an anti-malaria slogan",
+    "isActive": false,
+    "pageHint": "/ammibot",
+    "subtleHint": "Contribute to a social movement"
+  },
+  {
+    "id": 9,
+    "label": "Designer!",
+    "message": "You revamped your style!",
+    "triggerCode": "theme",
+    "icon": "mdi:brush",
+    "karma": 1000,
+    "isRepeatable": false,
+    "tooltip": "Change your theme in theme-selector",
+    "isActive": false,
+    "pageHint": "/theme",
+    "subtleHint": "Try out a new look"
+  },
+  {
+    "id": 10,
+    "label": "The road ahead!",
+    "message": "You've eyed the horizon",
+    "triggerCode": "test",
+    "icon": "mdi:brush",
+    "karma": 0,
+    "isRepeatable": true,
+    "tooltip": "Gain your first milestone",
+    "isActive": false,
+    "pageHint": "/milestones",
+    "subtleHint": "Aspire for greatness"
+  }
+]

@@ -1,0 +1,57 @@
+### Get All Tags
+GET http://kindrobots.org/api/tags
+Content-Type: application/json
+
+###
+
+### Create a New Tag
+POST http://kindrobots.org/api/tags
+Content-Type: application/json
+
+[{
+    "label": "art",
+    "title": "Abstract Art"
+}]
+
+###
+
+### Edit an Existing Tag (Assuming ID is 1)
+PATCH http://kindrobots.org/api/tags/1
+Content-Type: application/json
+
+{
+    "label": "art",
+    "title": "Modern Art"
+}
+
+###
+
+### Delete a Tag (Assuming ID is 1)
+DELETE http://kindrobots.org/api/tags/7
+Content-Type: application/json
+
+###
+
+### Seed Tags
+POST http://kindrobots.org/api/tags
+Content-Type: application/json
+
+[
+    {
+    "label": "art",
+    "title": "Liked"
+},
+{
+    "label": "art",
+    "title": "Disliked"
+}
+]
+
+###
+### Seed Tags with Minimal Formatting
+POST http://kindrobots.org/api/tags
+Content-Type: application/json
+
+["NSFW", "SFW", "FLAGGED", "WEIRD", "CAT", "hybrid", "disliked", "liked","Ai","favorite","highlight"]
+
+###

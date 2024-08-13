@@ -1,0 +1,83 @@
+<template>
+  <div class="bg-base-200 p-1">
+    <ami-loader />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { onMounted } from 'vue'
+import { useHead } from '@vueuse/head'
+import { useUserStore } from '@/stores/userStore'
+import { useErrorStore } from '@/stores/errorStore'
+import { useArtStore } from '@/stores/artStore'
+import { useChannelStore } from '@/stores/channelStore'
+import { useMilestoneStore } from '@/stores/milestoneStore'
+import { useTagStore } from '@/stores/tagStore'
+import { useMatureStore } from '@/stores/matureStore'
+import { useThemeStore } from '@/stores/themeStore'
+import { useBotStore } from '@/stores/botStore'
+import { useLayoutStore } from '@/stores/layoutStore'
+import { usePitchStore } from '@/stores/pitchStore'
+import { useChatStore } from '@/stores/chatStore'
+import { usePageStore } from '@/stores/pageStore'
+
+const layoutStore = useLayoutStore()
+const tagStore = useTagStore()
+const userStore = useUserStore()
+const artStore = useArtStore()
+const matureStore = useMatureStore()
+const themeStore = useThemeStore()
+const botStore = useBotStore()
+const pitchStore = usePitchStore()
+const channelStore = useChannelStore()
+const milestoneStore = useMilestoneStore()
+const chatStore = useChatStore()
+const pageStore = usePageStore()
+const errorStore = useErrorStore()
+
+useHead({
+  title: 'Kind Robots',
+  meta: [
+    { name: 'og:title', content: 'Welcome to the Kind Robots' },
+    {
+      name: 'description',
+      content: 'OpenAI-supported Promptbots here to assist humanity.',
+    },
+    {
+      name: 'og:description',
+      content:
+        'Make and Share OpenAI prompts, AI-assisted art, and find the secret jellybeans',
+    },
+    { name: 'og:image', content: '/images/kindtitle.webp' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+  ],
+})
+
+const { page } = useContent()
+
+console.log(page.value)
+onMounted(async () => {
+  try {
+    layoutStore.initialize()
+    botStore.loadStore()
+    matureStore.initialize()
+    userStore.initializeUser()
+    artStore.init()
+    tagStore.initializeTags()
+    themeStore.initTheme()
+    pitchStore.initializePitches()
+    channelStore.initializeChannels()
+    milestoneStore.initializeMilestones()
+    chatStore.fetchChatExchanges()
+    pageStore.loadPages()
+    console.log(
+      'Welcome to Kind Robots, random person who reads console logs! Are you a developer?',
+    )
+  } catch (error: unknown) {
+    errorStore.setError(
+      ErrorType.UNKNOWN_ERROR,
+      `Initialization failed: ${error instanceof Error ? error.message : String(error)}`,
+    )
+  }
+})
+</script>

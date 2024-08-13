@@ -1,0 +1,14 @@
+@apikey = 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
+@purpose = search
+
+POST https://api.openai.com/v1/files
+Authorization: Bearer {{apikey}}
+Content-Type: multipart/form-data
+
+Content-Disposition: form-data; name="file"; filename="material.json"
+Content-Type: application/json
+
+< ./material.json
+Content-Disposition: form-data; name="purpose"
+
+{{purpose}}

@@ -1,0 +1,70 @@
+### Create a new Chat Exchange
+POST https://kindrobots.org/api/chats/
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "botId": 2,
+  "botName": "AMI",
+  "username": "silasfelinus",
+  "userPrompt": "How are you?",
+  "botResponse": "I'm fine, thank you!",
+  "liked": null,
+  "hated": null,
+  "loved": null,
+  "flagged": null
+}
+
+###
+
+### Get a Chat Exchange by ID
+GET https://kindrobots.org/api/chats/1
+
+###
+
+### Update a Chat Exchange by ID
+PATCH https://kindrobots.org/api/chats/1
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "botId": 1,
+  "userPrompt": "How are you?",
+  "botResponse": "I'm great, thank you!",
+  "liked": true,
+  "hated": null,
+  "loved": null,
+  "flagged": null
+}
+
+###
+
+### Delete a Chat Exchange by ID
+DELETE https://kindrobots.org/api/chats/1
+
+###
+
+### Get all Chat Exchanges
+GET https://kindrobots.org/api/chats/
+
+###
+
+### Get Chat Exchanges by userId
+GET https://kindrobots.org/api/chats/user/1
+
+###
+
+### Get Chat Exchanges by botId
+GET https://kindrobots.org/api/chats/bot/1
+
+###
+
+### Add or Update Reaction to a Chat Exchange by ID
+PATCH https://kindrobots.org/api/chats/1/
+Content-Type: application/json
+
+{
+  "liked": true
+}
+
+###

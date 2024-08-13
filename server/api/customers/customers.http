@@ -1,0 +1,58 @@
+### Get All Customers
+GET http://kindrobots.org/api/customers
+Content-Type: application/json
+
+###
+
+### Create a New Customer
+POST http://kindrobots.org/api/customers
+Content-Type: application/json
+
+{
+    "email": "john.doe@example.com",
+    "name": "John Doe"
+}
+
+###
+
+### Edit an Existing Customer (Assuming ID is 1)
+PATCH http://kindrobots.org/api/customers/1
+Content-Type: application/json
+
+{
+    "name": "Johnathan Doe"
+}
+
+###
+
+### Get All Products
+GET http://kindrobots.org/api/products
+Content-Type: application/json
+
+###
+
+### Create a New Product
+POST http://kindrobots.org/api/products
+Content-Type: application/json
+
+{
+    "title": "Dummy Product for testing",
+    "category": "test",
+      "flavorText": "Buy me! Buy me!",
+    "description": "This is only here for content",
+  "passcode": "test",
+      "costInPennies": 0
+}
+
+###
+
+### Edit an Existing Product (Assuming ID is 1)
+PATCH http://kindrobots.org/api/products/1
+Content-Type: application/json
+
+{
+    "title": "The Modern Renaissance",
+    "costInPennies": 600
+}
+
+###

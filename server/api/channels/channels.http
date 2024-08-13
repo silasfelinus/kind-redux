@@ -1,0 +1,99 @@
+### Get All Channels
+GET http://kindrobots.org/api/channels
+Content-Type: application/json
+
+###
+
+### fetch Channel with messages
+GET http://kindrobots.org/api/channels/1
+Content-Type: application/json
+
+###
+
+### Create a New Channel
+POST http://kindrobots.org/api/channels
+Content-Type: application/json
+
+{
+    "userId": 0,
+    "label": "feed",
+    "description": "global feed"
+}
+
+###
+### Create a New Channel
+POST http://kindrobots.org/api/channels
+Content-Type: application/json
+
+{
+    "userId": 0,
+    "label": "welcome",
+    "description": "welcome messages"
+}
+
+###
+### Create a New Channel
+POST http://kindrobots.org/api/channels
+Content-Type: application/json
+
+{
+    "userId": 0,
+    "label": "livechat",
+    "description": "global livechat"
+}
+
+###
+
+### Edit an Existing Channel (Assuming ID 3
+PATCH http://kindrobots.org/api/channels/3
+Content-Type: application/json
+
+{
+    "label": "botcafe",
+    "description": "global botchat"
+}
+
+###
+
+### Delete a Channel (Assuming ID is 1)
+DELETE http://kindrobots.org/api/channels/1
+Content-Type: application/json
+
+###
+
+
+### Get All Messages
+GET http://kindrobots.org/api/messages
+Content-Type: application/json
+
+###
+
+### Create a New Message
+### 4 is welcome messages
+POST http://kindrobots.org/api/messages
+Content-Type: application/json
+
+{
+    "sender": "WELCOMEBOT",
+    "recipient": "Kind User",
+    "content": "Hello! Welcome to our Livechat!",
+    "channelId": 2
+}
+
+###
+
+### Edit an Existing Message (Assuming ID is 1)
+PATCH http://kindrobots.org/api/messages/1
+Content-Type: application/json
+
+{
+    "content": "Hello! Welcome to our Livechat!"
+}
+
+###
+
+### Delete a Message (Assuming ID is 1)
+DELETE http://kindrobots.org/api/messages/1
+Content-Type: application/json
+
+###
